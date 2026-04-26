@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNovaX Digital | Global Architecture</title>
+    
+    <!-- External Assets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --gold: #D4AF37;
+            --black: #0A0A0A;
+        }
+
+        body {
+            background-color: var(--black);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(212, 175, 55, 0.1);
+            margin-top: 24px;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            height: 100%;
+            width: 0%;
+            background: var(--gold);
+            animation: loadProgress 2s ease-in-out forwards;
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes revealUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes shatter {
+            0% { transform: scale(1.1); filter: blur(10px); opacity: 0; }
+            100% { transform: scale(1); filter: blur(0); opacity: 1; }
+        }
+
+        .animate-reveal { animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-shatter { animation: shatter 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        /* --- STYLES --- */
+        .gold-text { color: var(--gold); }
+        .gold-border { border-color: var(--gold); }
+        
+        .hero-title {
+            font-size: clamp(3rem, 12vw, 9rem);
+            font-weight: 900;
+            line-height: 0.85;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        .outlined-text {
+            -webkit-text-stroke: 1px var(--gold);
+            color: transparent;
+        }
+
+        .gold-btn {
+            background: var(--gold);
+            color: black;
+            font-weight: 900;
+            padding: 1.25rem 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .gold-btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        .service-card {
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            transition: all 0.5s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Navbar Glass */
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 1rem 0 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="noise-overlay"></div>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="text-3xl font-black italic tracking-tighter uppercase">
+            TECH<span class="gold-text">NOVA</span>X
+        </div>
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+        <p class="mt-4 text-[10px] uppercase tracking-[0.4em] text-zinc-500">Initializing Excellence</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 w-full z-[100] transition-all duration-500 py-8 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- LOGO SECTION -->
+            <div class="flex items-center gap-4 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="relative w-14 h-14 border-2 gold-border bg-black flex items-center justify-center overflow-hidden">
+                    <!-- LOGO IMAGE INPUT -->
+                    <img id="logo-img" src="logo.png" alt="Logo" class="w-8 h-8 object-contain relative z-10 transition-transform group-hover:scale-110">
+                    <div class="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black tracking-tighter uppercase italic leading-none">TECH<span class="gold-text">NOVA</span>X</span>
+                    <span class="text-[8px] tracking-[0.4em] gold-text font-bold uppercase">Digital Architecture</span>
+                </div>
+            </div>
+
+            <button onclick="sendWhatsApp('I need an elite digital consultation.')" class="hidden md:block px-6 py-2 border gold-border gold-text text-[10px] font-black uppercase tracking-widest hover:bg-[#D4AF37] hover:text-black transition-all">
+                Direct Line
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="min-h-screen flex items-center justify-center px-6 relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D4AF37]/5 rounded-full blur-[120px]"></div>
+        
+        <div class="relative z-10 text-center max-w-6xl">
+            <div class="inline-block px-6 py-2 border border-[#D4AF37]/20 rounded-full gold-text text-[10px] font-black uppercase tracking-[0.4em] mb-12 animate-reveal">
+              Fast • Premium • Mobile Optimized • Secured
+            </div>
+            
+            <h1 class="hero-title animate-shatter mb-12">
+                WE BUILT <br><span class="outlined-text">DIGITAL BRANDS</span>
+            </h1>
+
+            <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-16 animate-reveal" style="animation-delay: 0.3s;">
+                Websites, UI/UX, Branding & Crypto Solutions for Modern Businesses.
+            </p>
+
+            <div class="flex flex-wrap gap-6 justify-center animate-reveal" style="animation-delay: 0.5s;">
+                <button onclick="sendWhatsApp('I am ready to start a project.')" class="gold-btn shadow-lg shadow-[#D4AF37]/20">
+                    Start Project <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button onclick="document.getElementById('services').scrollIntoView()" class="px-12 py-5 border-2 gold-border gold-text font-black uppercase tracking-widest text-sm hover:bg-[#D4AF37] hover:text-black transition-all">
+                    Capabilities
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-32 px-6 bg-[#0A0A0A]">
+        <div class="max-w-7xl mx-auto">
+            <div class="reveal-on-scroll mb-20">
+                <span class="gold-text font-bold text-xs uppercase tracking-[0.5em] mb-4 block">Core Services</span>
+                <h2 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-[0.9]">
+                    TECH<span class="gold-text">NOVA</span>X <br>SERVICES
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card reveal-on-scroll">
+                    <i class="fa-solid fa-desktop text-4xl gold-text mb-8"></i>
+                    <h3 class="text-2xl font-black uppercase italic mb-4">Website Design</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed mb-8">Bespoke digital architecture optimized for high-end conversion and brand authority.</p>
+                    <button onclick="sendWhatsApp('Interested in Website Design.')" class="gold-text text-[10px] font-bold uppercase tracking-widest hover:tracking-[0.2em] transition-all">Engage Service <i class="fa-solid fa-plus ml-2"></i></button>
+                </div>
+
+                <div class="service-card reveal-on-scroll">
+                    <i class="fa-solid fa-rocket text-4xl gold-text mb-8"></i>
+                    <h3 class="text-2xl font-black uppercase italic mb-4">Landing Pages</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed mb-8">Aggressive, high-velocity landing systems designed to crush market competition.</p>
+                    <button onclick="sendWhatsApp('Interested in Landing Pages.')" class="gold-text text-[10px] font-bold uppercase tracking-widest hover:tracking-[0.2em] transition-all">Engage Service <i class="fa-solid fa-plus ml-2"></i></button>
+                </div>
+
+                <div class="service-card reveal-on-scroll">
+                    <i class="fa-solid fa-fingerprint text-4xl gold-text mb-8"></i>
+                    <h3 class="text-2xl font-black uppercase italic mb-4">UI/UX Design</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed mb-8">Psychology-driven user journeys that transform interactions into long-term loyalty.</p>
+                    <button onclick="sendWhatsApp('Interested in UI/UX Design.')" class="gold-text text-[10px] font-bold uppercase tracking-widest hover:tracking-[0.2em] transition-all">Engage Service <i class="fa-solid fa-plus ml-2"></i></button>
+                </div>
+
+                <div class="service-card reveal-on-scroll">
+                    <i class="fa-solid fa-coins text-4xl gold-text mb-8"></i>
+                    <h3 class="text-2xl font-black uppercase italic mb-4">Crypto Payments</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed mb-8">Seamless blockchain gateways bridging luxury with the decentralized future.</p>
+                    <button onclick="sendWhatsApp('Interested in Crypto Payment Integration.')" class="gold-text text-[10px] font-bold uppercase tracking-widest hover:tracking-[0.2em] transition-all">Engage Service <i class="fa-solid fa-plus ml-2"></i></button>
+                </div>
+
+                <div class="service-card reveal-on-scroll">
+                    <i class="fa-solid fa-shield-halved text-4xl gold-text mb-8"></i>
+                    <h3 class="text-2xl font-black uppercase italic mb-4">Branding</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed mb-8">Iconic visual identities and signatures that command instant global recognition.</p>
+                    <button onclick="sendWhatsApp('Interested in Branding.')" class="gold-text text-[10px] font-bold uppercase tracking-widest hover:tracking-[0.2em] transition-all">Engage Service <i class="fa-solid fa-plus ml-2"></i></button>
+                </div>
+
+                <div class="bg-[#D4AF37] p-10 flex flex-col justify-center items-center text-center reveal-on-scroll cursor-pointer" onclick="sendWhatsApp('I have a custom project.')">
+                    <h3 class="text-3xl font-black text-black uppercase mb-4">CUSTOM <br>PROJECT?</h3>
+                    <i class="fa-solid fa-zap text-black text-4xl animate-pulse"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-20 bg-black border-t border-white/5 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
+            <div>
+                <span class="text-3xl font-black tracking-tighter uppercase italic">TECH<span class="gold-text">NOVA</span>X</span>
+                <p class="text-zinc-600 text-[10px] uppercase tracking-widest mt-4">© 2024 TechNovaX Digital. Deployed Worldwide.</p>
+            </div>
+            
+            <div class="text-center md:text-right">
+                <p class="gold-text font-black text-xl italic">+234 810 181 2605</p>
+                <p class="text-[9px] uppercase tracking-[0.3em] text-zinc-500 mt-2">Available 24/7</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const WHATSAPP_NUMBER = "2348101812605";
+
+        // WhatsApp Function
+        function sendWhatsApp(msg) {
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello TechNovaX Digital! ' + msg)}`;
+            window.open(url, '_blank');
+        }
+
+        // --- PRELOADER REMOVAL ENGINE ---
+        function removePreloader() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Re-enable scroll
+                }, 800);
+            }
+        }
+
+        // Safety Reveal: Reveal the site after 3 seconds no matter what
+        setTimeout(removePreloader, 3000);
+
+        // Standard Reveal: When window finishes loading
+        window.onload = removePreloader;
+
+        // --- SCROLL REVEAL LOGIC ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // --- NAVBAR SCROLL EFFECT ---
+        window.onscroll = () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('glass-nav');
+            } else {
+                nav.classList.remove('glass-nav');
+            }
+        };
+    </script>
+</body>
+</html>
